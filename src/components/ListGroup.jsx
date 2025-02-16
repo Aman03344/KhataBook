@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListItem from "./ListItem";
+import TransactionContext from "../context/TransactionContext";
 
-const ListGroup = ({transaction, dlt,editTransaction}) => {
-    // console.log(transaction)
+const ListGroup = () => {
+
+  const { transaction } =  useContext(TransactionContext)
+  
   return (
     <ul className=" w-full h-auto flex flex-col justify-center items-center mt-5 my-2">
-    
      {
-      transaction.map((transactions)=> <ListItem key={transactions.id} transactions={transactions} dlt={dlt} editTransaction={editTransaction} />)
-     }  
+      transaction.map((transactions)=> <ListItem key={transactions.id} transactions={transactions}/>)
+     }
     </ul>
   );
 };

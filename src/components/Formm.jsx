@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import TransactionContext from "../context/TransactionContext";
 
-const Formm = ({ addtransaction, edit, updateTransaction }) => {
+const Formm = () => {
+  const { addtransaction, edit, updateTransaction } =
+    useContext(TransactionContext);
+
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
 
   const handleSub = (e) => {
     e.preventDefault();
     if (edit.isEdit === true) {
-      updateTransaction({ id: edit.transaction.id, text, amount: parseInt(amount) });
+      updateTransaction({
+        id: edit.transaction.id,
+        text,
+        amount: parseInt(amount),
+      });
     } else {
       addtransaction(text, amount);
     }
