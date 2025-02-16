@@ -4,9 +4,7 @@ const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
   const [transaction, setTransaction] = useState([
-    { id: 1, text: "hii", amount: 100000 },
-    { id: 2, text: "by", amount: 100000 },
-    { id: 3, text: " pta ni", amount: 100000 },
+
   ]);
 
   const [edit, setEdit] = useState({
