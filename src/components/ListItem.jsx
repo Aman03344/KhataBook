@@ -7,7 +7,9 @@ const ListItem = ({transactions}) => {
 
   return (
     <li
-      className="w-[80%] md:w-[80%] sm:w-[90%] p-3 border border-gray-300 rounded-2xl shadow-xl my-2 flex flex-col sm:flex-row sm:justify-between items-center text-center sm:text-left"
+      className={`w-[80%] md:w-[80%] sm:w-[90%] p-3 border border-gray-300 rounded-2xl shadow-xl my-2 flex flex-col sm:flex-row sm:justify-between items-center text-center sm:text-left ${transactions.amount > 0
+        ? "bg-green-100" :  "bg-red-100"
+      }`}
 
 
     >
