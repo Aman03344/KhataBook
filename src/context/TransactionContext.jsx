@@ -7,9 +7,7 @@ export const TransactionProvider = ({ children }) => {
   
 const intialState = {
   transaction : [
-    {id: 1, text: "income", amount: 20000},
-    {id: 2, text: "rent", amount: -3000},
-    {id: 3, text: "food", amount: -2000}
+
   ],
   edit:{transaction : {} , isEdit: false}
 }
