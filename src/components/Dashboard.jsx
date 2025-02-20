@@ -2,25 +2,28 @@ import React, { useContext } from "react";
 import TransactionContext from "../context/TransactionContext";
 
 const Dashboard = () => {
-
-  const { transaction } = useContext(TransactionContext)
+  const { transaction } = useContext(TransactionContext);
 
   const income = transaction
     .filter((transactions) => transactions.amount > 0)
     .reduce((a, c) => a + c.amount, 0);
 
-  const expense = transaction
+    const expense = transaction
     .filter((transactions) => transactions.amount < 0)
     .reduce((a, c) => a + c.amount, 0);
 
-  const balance = transaction.reduce((a, c) => a + c.amount, 0);
+    const balance = income + expense
+
+
 
   return (
     <>
       <div className="w-full py-3 flex justify-center items-center">
         <div className="w-[60%] md:w-[80%] sm:w-[90%] flex flex-col sm:flex-row justify-between px-3 text-center sm:text-left">
           <h1 className="text-xl font-bold">Dashboard</h1>
-          <h1 className="font-bold text-xl">Total Transactions: {transaction.length}</h1>
+          <h1 className="font-bold text-xl">
+            Total Transactions: {transaction.length}
+          </h1>
         </div>
       </div>
 

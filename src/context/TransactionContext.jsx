@@ -1,55 +1,24 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
+import { TransactionReducer } from "./TransactionReducer";
 
 const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
-  const [transaction, setTransaction] = useState([
+  
+const intialState = {
+  transaction : [
+    {id: 1, text: "income", amount: 20000},
+    {id: 2, text: "rent", amount: -3000},
+    {id: 3, text: "food", amount: -2000}
+  ],
+  edit:{transaction : {} , isEdit: false}
+}
 
-  ]);
 
-  const [edit, setEdit] = useState({
-    transaction: {},
-    isEdit: false,
-  });
-
-  const dlt = (id) => {
-    setTransaction(transaction.filter((item) => item.id !== id));
-  };
-
-  const addtransaction = (text, amount) => {
-    setTransaction([
-      { id: crypto.randomUUID(), text, amount: +amount },
-      ...transaction,
-    ]);
-  };
-
-  const editTransaction = (transaction) => {
-    setEdit({ transaction: transaction, isEdit: true });
-  };
-
-  const updateTransaction = (updatedTransaction) => {
-    setTransaction(
-      transaction.map((trans) =>
-        trans.id === updatedTransaction.id ? updatedTransaction : trans
-      )
-    );
-    setEdit({
-      transaction: {},
-      isEdit: false,
-    });
-  };
+const [ state, dispatch ] = useReducer(TransactionReducer,intialState)
 
   return (
-    <TransactionContext.Provider
-      value={{
-        transaction,
-        dlt,
-        addtransaction,
-        edit,
-        editTransaction,
-        updateTransaction,
-      }}
-    >
+    <TransactionContext.Provider value={{...state, dispatch}}>
       {children}
     </TransactionContext.Provider>
   );
